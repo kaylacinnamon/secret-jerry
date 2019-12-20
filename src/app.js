@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 import openSocket from 'socket.io-client';
+import "bootswatch/dist/lux/bootstrap.min.css"; 
+import Button from 'react-bootstrap/Button';
+import InputGroup from 'react-bootstrap/InputGroup';
+import FormControl from 'react-bootstrap/FormControl';
 // import logo from './logo.svg';
 // import './App.css';
 
@@ -34,17 +38,20 @@ class App extends Component {
     render() {
         return (
         <div className="App">
-            <button onClick={this.handleCreateGame}>Create Game</button>
-            <br/>
-            <br/>
-            <div> Room ID </div>
-            <input name="Room ID" onChange={this.handleRoomIDChange}/>
-            <br/>
-            <br/>
-            <div> Name </div>
-            <input onChange={this.handlePlayerNameChange}/>
-            <br/>
-            <button onClick={this.handleJoinGame}>Join Game</button>
+            <Button onClick={this.handleCreateGame}>Create Game</Button>
+            <InputGroup size="sm" className="mb-3" onChange={this.handleRoomIDChange}>
+                <InputGroup.Prepend>
+                    <InputGroup.Text id="inputGroup-sizing-sm" name="Room ID">Room ID</InputGroup.Text>
+                </InputGroup.Prepend>
+                <FormControl aria-label="Small" aria-describedby="inputGroup-sizing-sm" />
+            </InputGroup>
+            <InputGroup size="sm" className="mb-3" onChange={this.handlePlayerNameChange}>
+                <InputGroup.Prepend>
+                    <InputGroup.Text id="inputGroup-sizing-sm">Name</InputGroup.Text>
+                </InputGroup.Prepend>
+                <FormControl aria-label="Small" aria-describedby="inputGroup-sizing-sm" />
+            </InputGroup>
+            <Button onClick={this.handleJoinGame}>Join Game</Button>
         </div>
         );
     }

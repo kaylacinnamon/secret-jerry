@@ -1,7 +1,7 @@
 const io = require("socket.io")();
 
 const port = process.env.PORT || 4001;
-const gameMasterSocketID = null;
+let gameMasterSocketID = null;
 const players = {}; // players[socketID] = playerName
 
 /**
