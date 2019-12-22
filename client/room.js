@@ -8,8 +8,4 @@ function createRoom() {
     console.log(socket.id)
 }
 
-
-
-socket.on("image", function (image) {
-    output.src = image;
-});
+console.log('test');
