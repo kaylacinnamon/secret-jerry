@@ -1,8 +1,9 @@
-const express = require("express");
-const router = express.Router();
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './app';
+// import './index.css';
 
-router.get("/", (req, res) => {
-  res.send({ response: "I am alive" }).status(200);
-});
-
-module.exports = router;
+ReactDOM.render(
+  <App />,
+  document.getElementById('root')
+);

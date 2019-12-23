@@ -1,21 +1,21 @@
-const express = require("express");
-const http = require("http");
-const socketIo = require("socket.io");
+import React, { Component } from 'react';
+// import logo from './logo.svg';
+// import './App.css';
 
-const port = process.env.PORT || 4001;
-const index = require("\.\./routes/index");
-const app = express();
 
-app.use(index);
+class App extends Component {
 
-const server = http.createServer(app);
-const io = socketIo(server);
-const getApiAndEmit = "TODO"
+    handleCreateGame = () => {
+        console.log('test');
+    };
 
-io.on("connection", socket => {
-    console.log("New client connected");
+    render() {
+        return (
+        <div className="App">
+            <button onClick={this.handleCreateGame}>Create Game</button>
+        </div>
+        );
+    }
+}
 
-    socket.on("disconnect", () => console.log("Client disconnected"));
-});
-
-server.listen(port, () => console.log(`Listening on port ${port}`));
+export default App;
