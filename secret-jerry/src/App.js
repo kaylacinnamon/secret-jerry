@@ -22,10 +22,10 @@ class App extends Component {
         socket.emit('gameMaster')
     };
 
-    handleRoomIDChange = (event) => {
+    handleRoomIDChange = event => {
         this.setState({roomID: event.target.value});
     }
-    handlePlayerNameChange = () => {
+    handlePlayerNameChange = event => {
         this.setState({playerName: event.target.value});
     }
 
