@@ -18,13 +18,25 @@ function assignRoles() {
 
 io.on("connection", socket => {
     console.log(`New client connected with client id ${socket.id}`);
-    socket.on("disconnect", () => console.log("Client disconnected"));
-
-    socket.on("gameMaster", () => {gameMasterSocketID = socket.id});
-    socket.on("playerJoin", playerName => {
-        players[socket.id] = playerName;
+    socket.on("disconnect", () => {
+        delete players[socket.id];
+        console.log('Deleted player');
         console.dir(players);
+        io.to(gameMasterSocketID).emit('playerChange',  players);
     });
+
+    socket.on("gameMaster", () => {
+        console.log('Game Master joined!');
+        gameMasterSocketID = socket.id
+    });
+
+    socket.on("playerJoin", playerName => {
+        console.log(`Player ${playerName} joined!`)
+        console.log(`Sending notification to master at ${gameMasterSocketID}`)
+        players[socket.id] = playerName;
+        io.to(gameMasterSocketID).emit('playerChange',  players);
+    });
+
     socket.on("gameStart", handleGameStart);
 });
 
