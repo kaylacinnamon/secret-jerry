@@ -14,7 +14,7 @@ class App extends Component {
 
     handleCreateGame = () => {
         console.log('Opening Socket to server');
-        const socket = openSocket('http://localhost:4001');
+        const socket = openSocket('http://192.168.1.126:4001');
         socket.emit('gameMaster')
     };
 
@@ -27,7 +27,7 @@ class App extends Component {
 
     handleJoinGame = () => {
         console.log('Joining Game...');
-        const socket = openSocket('http://localhost:4001');
+        const socket = openSocket('http://192.168.1.126:4001');
         socket.emit('playerJoin', this.state.playerName);
     }
    
