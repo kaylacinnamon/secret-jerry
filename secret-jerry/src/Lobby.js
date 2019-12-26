@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import openSocket from 'socket.io-client';
 
 class Lobby extends Component {
+    static propTypes = {
+        roomID: PropTypes.string.isRequired
+    }
+
     state = {
         players: {},
         socket: null
@@ -12,7 +17,7 @@ class Lobby extends Component {
     }
 
     componentDidMount() {
-        const socket = openSocket('http://192.168.1.126:4001');
+        const socket = openSocket(`http://${this.props.roomID}:4001`);
 
         console.log('Sending game master event');
         socket.emit('gameMaster')

@@ -8,7 +8,6 @@ import './App.css';
 
 
 class App extends Component {
-
     state = {
       socket: null,
       isGameMaster: false,
@@ -18,7 +17,7 @@ class App extends Component {
 
     handleCreateGame = () => {
         console.log('Opening Socket to server');
-        this.setState({isGameMaster: true})
+        this.setState({isGameMaster: true, roomID: window.location.hostname})
     };
 
     handleRoomIDChange = event => {
@@ -30,8 +29,12 @@ class App extends Component {
     };
 
     handleJoinGame = () => {
-        console.log('Joining Game...');
-        const socket = openSocket('http://192.168.1.126:4001');
+        if (!this.state.roomID) {
+            alert('Please chose a room to join!');
+            return;
+        }
+
+        const socket = openSocket(`http://${this.state.roomID}:4001`);
         this.setState({socket})
         socket.emit('playerJoin', this.state.playerName);
     };
@@ -50,7 +53,7 @@ class App extends Component {
                 />
               }
               {this.state.socket && !this.state.isGameMaster && <WaitingScreen/>}
-              {this.state.isGameMaster && <Lobby/>}
+              {this.state.isGameMaster && <Lobby roomID={this.state.roomID}/>}
             </div>
         );
     }
