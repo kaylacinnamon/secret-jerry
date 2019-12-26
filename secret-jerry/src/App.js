@@ -4,7 +4,6 @@ import "bootswatch/dist/lux/bootstrap.min.css";
 import WaitingScreen from './WaitingScreen'
 import LandingPage from './LandingPage'
 import Lobby from './Lobby';
-import './App.css';
 
 
 class App extends Component {

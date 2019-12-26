@@ -18,7 +18,6 @@ class LandingPage extends Component {
     render() {
         return (
             <div id="landingPage">
-                <img src="assets/Header.png" alt="header" id="header"></img>
                 <br/>
                 <Button onClick={this.props.handleCreateGame}>Create Game</Button>
                 <InputGroup size="sm" className="mb-3" onChange={this.props.handleRoomIDChange} value={this.props.roomID}>
