@@ -5,6 +5,9 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-image: url("assets/Background.png");
+  background-repeat: none;
+  background-size: cover;
 }
 
 code {
@@ -19,4 +22,9 @@ code {
 #landingPage {
   width: 50%;
   margin: 0 auto;
+}
+
+#createGameButton, #joinGameButton {
+  margin: 0 auto;
+  display: block;
 }
