@@ -1,17 +1,16 @@
 import React, { Component } from 'react';
 import openSocket from 'socket.io-client';
 import "bootswatch/dist/lux/bootstrap.min.css"; 
-import WaitingScreen from './WaitingScreen'
-import LandingPage from './LandingPage'
-import Lobby from './Lobby';
-
+import InputGroup from 'react-bootstrap/InputGroup';
+import FormControl from 'react-bootstrap/FormControl';
+import { Link } from "react-router-dom";
 
 class App extends Component {
     state = {
       socket: null,
       isGameMaster: false,
       playerName: '',
-      roomID: null
+      roomID: ''
     };
 
     handleCreateGame = () => {
@@ -27,32 +26,55 @@ class App extends Component {
         this.setState({playerName: event.target.value});
     };
 
-    handleJoinGame = () => {
-        if (!this.state.roomID) {
-            alert('Please chose a room to join!');
-            return;
-        }
-
-        const socket = openSocket(`http://${this.state.roomID}:4001`);
-        this.setState({socket})
-        socket.emit('playerJoin', this.state.playerName);
-    };
-
     render() {
         return (
-            <div className="App">
-              {!this.state.socket && !this.state.isGameMaster &&
-               <LandingPage
-                  roomID = {this.state.roomID}
-                  playerName = {this.state.playerName}
-                  handleCreateGame={this.handleCreateGame}
-                  handleRoomIDChange = {this.handleRoomIDChange}
-                  handlePlayerNameChange = {this.handlePlayerNameChange}
-                  handleJoinGame = {this.handleJoinGame}
-                />
-              }
-              {this.state.socket && !this.state.isGameMaster && <WaitingScreen/>}
-              {this.state.isGameMaster && <Lobby roomID={this.state.roomID}/>}
+            <div id="landingPage">
+                <br/>
+                <div className="row">
+                    <div className="col">
+                        <div className="card bg-secondary mb-2">
+                            <div className="card-header">Create Game</div>
+                            <div className="card-body">
+                                <h4 className="card-title">Create a New Game</h4>
+                                <p className="card-text">Here's some info on how you can create a new game.</p>
+                                <button type="button" onClick={this.props.handleCreateGame} id="createGameButton" className="btn btn-primary">Create Game</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col">
+                        <div className="card text-white bg-primary mb-2">
+                            <div className="card-header">Join Game</div>
+                            <div className="card-body">
+                                <h4 className="card-title">Join a Game</h4>
+                                <p className="card-text">Here's what you need to know to join a game.</p>
+                                <form>
+                                    <fieldset>
+                                        <div className="form-group">
+                                            <label htmlFor="roomID">Room ID</label>
+                                            <input type="text"  className="form-control" id="roomID" value={this.state.roomID} onChange={this.handleRoomIDChange}></input>
+                                        </div>
+                                        <div className="form-group">
+                                            <label htmlFor="playerName"> Name </label>
+                                            <input type="text" className="form-control" id="playerName" value={this.state.playerName} onChange={this.handlePlayerNameChange}></input>
+                                        </div>
+                                    </fieldset>
+                                </form>
+                                <Link
+                                    to={{
+                                        pathname:"/waiting_room",
+                                        search: `?roomID=${this.state.roomID}&playerName=${this.state.playerName}`
+                                    }}
+                                >
+                                    <button
+                                        type="button"
+                                        disabled={!this.state.roomID || !this.state.playerName}
+                                        id="joinGameButton"
+                                        className="btn btn-secondary">Join Game</button>
+                                </Link>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         );
     }
