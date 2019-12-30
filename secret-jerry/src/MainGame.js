@@ -1,19 +1,19 @@
 import React, { Component } from 'react';
-import openSocket from 'socket.io-client';
 import { withRouter } from 'react-router-dom';
 
 
 const playerMinimum = 2;
 
-class Game extends Component {
+class MainGame extends Component {
     state = {
         players: this.props.location.state.players,
+        president: ""
     }
 
     componentDidMount() {
-        console.dir(this.state);
-        const startingPresident = this.state.players[Math.floor(Math.random()*this.state.players.length)];
-        handleNewPresident(startingPresident);
+        const keys = Object.keys(this.state.players);
+        const startingPresident = this.state.players[keys[Math.floor(Math.random()*keys.length)]];
+        this.handleNewPresident(startingPresident);
     }
 
     handleNewPresident(president) {
@@ -24,10 +24,12 @@ class Game extends Component {
         return (
             <div>
                 <p> The current president is: {this.state.president} </p>
+                <br/>
+                <p> {"<board goes here?>"} </p>
             </div>
         )
     }
 }
 
 
-export default withRouter(Game);
+export default withRouter(MainGame);

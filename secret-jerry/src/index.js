@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import Lobby from './Lobby';
-import Game from './Game';
+import MainGame from './MainGame';
 import WaitingScreen from './WaitingScreen'
 import {
     BrowserRouter as Router,
@@ -18,18 +18,18 @@ ReactDOM.render(
 
         <Router>
             <Switch>
-            <Route path="/lobby">
-                <Lobby />
-            </Route>
-            <Route path="/waiting_room">
-                <WaitingScreen />
-            </Route>
-            <Route path="/">
-                <App />
-            </Route>
-            <Route path="/game">
-                <Game />
-            </Route>
+                <Route path="/lobby">
+                    <Lobby />
+                </Route>
+                <Route path="/waiting_room">
+                    <WaitingScreen />
+                </Route>
+                <Route path="/main_game">
+                    <MainGame />
+                </Route>
+                <Route path="/">
+                    <App />
+                </Route>
             </Switch>
         </Router>
     </div>,

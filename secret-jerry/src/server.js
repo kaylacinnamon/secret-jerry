@@ -19,6 +19,11 @@ function assignRoles() {
 io.on("connection", socket => {
     console.log(`New client connected with client id ${socket.id}`);
     socket.on("disconnect", () => {
+        if (socket.id = gameMasterSocketID) {
+            console.log('Game Master has left! Disbanning server...')
+            players = {};
+            return;
+        }
         delete players[socket.id];
         console.log('Deleted player');
         console.dir(players);
