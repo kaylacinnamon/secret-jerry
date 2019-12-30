@@ -16,10 +16,12 @@ class WaitingScreen extends Component {
 
     render() {
         return (
-            <div id="waitingPage">
-                <h1>Welcome {this.props.location.state.playerName}</h1>
-                <h2>Waiting for game to start...</h2>
-                <img src="assets/Waiting.gif" alt="waiting" id="waiting"></img>
+            <div id="waitingPage" className="card text-white bg-primary">
+                <div className="card-header">{this.props.location.state.playerName}</div>
+                <div className="card-body">
+                    <h2 className="card-title">Waiting for game to start...</h2>
+                    <img src="assets/Waiting.gif" alt="waiting" id="waiting"></img>
+                </div>
             </div>
         )
     }

@@ -27,28 +27,31 @@ class Lobby extends Component {
 
     render() {
         return (
-            <div>
-                <ol>
-                    {Object.keys(this.state.players).map(socket => <li key={socket}> {this.state.players[socket]} </li>)}
-                </ol>
-                <br/>
-                <Link
-                    to={{
-                        pathname:"/main_game",
-                        state: {
-                            players: this.state.players
-                        }
-                    }}
-                >
-                    <button
-                        type="button"
-                        id="startGameButton"
-                        className="btn btn-primary"
-                        disabled={this.state.players < playerMinimum}
+            <div id="lobby" className="card text-white bg-primary">
+                <div className="card-header">Lobby</div>
+                <div className="card-body">
+                    <ol>
+                        {Object.keys(this.state.players).map(socket => <li key={socket}> {this.state.players[socket]} </li>)}
+                    </ol>
+                    <br/>
+                    <Link
+                        to={{
+                            pathname:"/main_game",
+                            state: {
+                                players: this.state.players
+                            }
+                        }}
                     >
-                            Start Game
-                    </button>
-                </Link>
+                        <button
+                            type="button"
+                            id="startGameButton"
+                            className="btn btn-secondary"
+                            disabled={this.state.players < playerMinimum}
+                        >
+                                Start Game
+                        </button>
+                    </Link>
+                </div>
             </div>
         )
     }
