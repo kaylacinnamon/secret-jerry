@@ -3,7 +3,8 @@ import openSocket from 'socket.io-client';
 import "bootswatch/dist/lux/bootstrap.min.css"; 
 import InputGroup from 'react-bootstrap/InputGroup';
 import FormControl from 'react-bootstrap/FormControl';
-import { Link } from "react-router-dom";
+import { Link, withRouter} from "react-router-dom";
+
 
 class App extends Component {
     state = {
@@ -37,7 +38,18 @@ class App extends Component {
                             <div className="card-body">
                                 <h4 className="card-title">Create a New Game</h4>
                                 <p className="card-text">Here's some info on how you can create a new game.</p>
-                                <button type="button" onClick={this.props.handleCreateGame} id="createGameButton" className="btn btn-primary">Create Game</button>
+                                <Link
+                                    to={{
+                                        pathname:"/lobby",
+                                    }}
+                                >
+                                    <button
+                                        type="button"
+                                        onClick={this.props.handleCreateGame}
+                                        id="createGameButton"
+                                        className="btn btn-primary">Create Game
+                                    </button>
+                                </Link>
                             </div>
                         </div>
                     </div>
@@ -62,7 +74,10 @@ class App extends Component {
                                 <Link
                                     to={{
                                         pathname:"/waiting_room",
-                                        search: `?roomID=${this.state.roomID}&playerName=${this.state.playerName}`
+                                        state: {
+                                            roomID: this.state.roomID,
+                                            playerName: this.state.playerName
+                                        }
                                     }}
                                 >
                                     <button
@@ -80,4 +95,4 @@ class App extends Component {
     }
 }
 
-export default App;
+export default withRouter(App);

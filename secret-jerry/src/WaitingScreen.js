@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import openSocket from 'socket.io-client';
+import { useLocation, withRouter } from 'react-router-dom';
 
 class WaitingScreen extends Component {
     state = {
@@ -7,9 +8,9 @@ class WaitingScreen extends Component {
     }
 
     componentDidMount() {
-        const socket = openSocket(`http://192.168.1.105:4001`);
+        const socket = openSocket(`http://${this.props.location.state.roomID}:4001`);
         this.setState({socket})
-        socket.emit('playerJoin', 'Jerry');
+        socket.emit('playerJoin', `${this.props.location.state.playerName}`);
     }
 
     render() {
@@ -19,4 +20,4 @@ class WaitingScreen extends Component {
     }
 }
 
-export default WaitingScreen
+export default withRouter(WaitingScreen);

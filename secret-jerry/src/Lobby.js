@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import openSocket from 'socket.io-client';
+import { withRouter } from 'react-router-dom';
 
 class Lobby extends Component {
     state = {
@@ -33,4 +34,4 @@ class Lobby extends Component {
 }
 
 
-export default Lobby
+export default withRouter(Lobby);
