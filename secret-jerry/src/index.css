@@ -28,3 +28,14 @@ code {
   margin: 0 auto;
   display: block;
 }
+
+#waitingPage {
+  width: 60%;
+  margin: 0 auto;
+  margin-top: 5%;
+  text-align: center;
+}
+
+#waiting {
+  margin-top: 5%;
+}
