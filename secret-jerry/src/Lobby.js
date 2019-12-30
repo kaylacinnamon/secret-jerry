@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import openSocket from 'socket.io-client';
-import { withRouter } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
+
+
+const playerMinimum = 5;
 
 class Lobby extends Component {
     state = {
@@ -24,10 +27,29 @@ class Lobby extends Component {
 
     render() {
         return (
-            <ol>
-                {Object.keys(this.state.players).map(socket => <li key={socket}> {this.state.players[socket]} </li>)}
-            </ol>
-            
+            <div>
+                <ol>
+                    {Object.keys(this.state.players).map(socket => <li key={socket}> {this.state.players[socket]} </li>)}
+                </ol>
+                <br/>
+                <Link
+                    to={{
+                        pathname:"/game",
+                        state: {
+                            players: this.state.players
+                        }
+                    }}
+                >
+                    <button
+                        type="button"
+                        id="startGameButton"
+                        className="btn btn-primary"
+                        disabled={this.state.players < playerMinimum}
+                    >
+                            Start Game
+                    </button>
+                </Link>
+            </div>
         )
     }
 }

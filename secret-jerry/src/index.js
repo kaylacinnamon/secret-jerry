@@ -3,12 +3,12 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import Lobby from './Lobby';
+import Game from './Game';
 import WaitingScreen from './WaitingScreen'
 import {
     BrowserRouter as Router,
     Switch,
-    Route,
-    Link
+    Route
   } from "react-router-dom";
 import * as serviceWorker from './serviceWorker';
 
@@ -26,6 +26,9 @@ ReactDOM.render(
             </Route>
             <Route path="/">
                 <App />
+            </Route>
+            <Route path="/game">
+                <Game />
             </Route>
             </Switch>
         </Router>

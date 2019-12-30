@@ -11,11 +11,6 @@ class App extends Component {
       roomID: ''
     };
 
-    handleCreateGame = () => {
-        console.log('Opening Socket to server');
-        this.setState({isGameMaster: true, roomID: window.location.hostname})
-    };
-
     handleRoomIDChange = event => {
         this.setState({roomID: event.target.value});
     };
@@ -42,7 +37,6 @@ class App extends Component {
                                 >
                                     <button
                                         type="button"
-                                        onClick={this.props.handleCreateGame}
                                         id="createGameButton"
                                         className="btn btn-primary">Create Game
                                     </button>
