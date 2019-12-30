@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import openSocket from 'socket.io-client';
-import { useLocation, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 class WaitingScreen extends Component {
     state = {

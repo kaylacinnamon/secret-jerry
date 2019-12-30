@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import openSocket from 'socket.io-client';
 import { withRouter } from 'react-router-dom';
 
