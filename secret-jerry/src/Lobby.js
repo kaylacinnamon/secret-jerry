@@ -36,7 +36,7 @@ class Lobby extends Component {
                     <br/>
                     <Link
                         to={{
-                            pathname:"/main_game",
+                            pathname:"/assign_roles",
                             state: {
                                 players: this.state.players
                             }

@@ -4,7 +4,8 @@ import './index.css';
 import App from './App';
 import Lobby from './Lobby';
 import MainGame from './MainGame';
-import WaitingScreen from './WaitingScreen'
+import WaitingScreen from './WaitingScreen';
+import AssignRoles from './AssignRoles';
 import {
     BrowserRouter as Router,
     Switch,
@@ -26,6 +27,9 @@ ReactDOM.render(
                 </Route>
                 <Route path="/main_game">
                     <MainGame />
+                </Route>
+                <Route path="/assign_roles">
+                    <AssignRoles />
                 </Route>
                 <Route path="/">
                     <App />

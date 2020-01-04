@@ -33,7 +33,7 @@ code {
   display: block;
 }
 
-#waitingPage, #lobby {
+#waitingPage, #lobby, #assignPage {
   width: 80%;
   margin: 0 auto;
   margin-top: 2%;
